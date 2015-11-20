@@ -1,5 +1,5 @@
-fastsim
-=======
+fastsim_multi
+=============
 
 **This is a Sferes2 module** 
 
@@ -12,8 +12,8 @@ Mouret, J.-B. and Doncieux, S. (2012). Encouraging Behavioral Diversity in Evolu
 
 Usage & installation
 --------------------
-- copy fastsim to the "modules" directory in the sferes2 root directory.
-- add fastsim in modules.conf in the sferes2 root directory
+- copy fastsim_multi to the "modules" directory in the sferes2 root directory.
+- add fastsim_multi in modules.conf in the sferes2 root directory
 - run ./waf configure and ./waf build
 
 ### Depedencies: 
