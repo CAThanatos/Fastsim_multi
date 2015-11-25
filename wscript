@@ -54,6 +54,9 @@ def build(bld):
     fastsim_keyboard.uselib = 'SDL'        
     fastsim_keyboard.target = 'fastsim_keyboard'
 
-
-
-
+    online_fastsim = bld.new_task_gen('cxx', 'program')
+    online_fastsim.source = 'online_fastsim.cpp'
+    online_fastsim.includes = '. ../../'
+    online_fastsim.uselib_local = 'sferes2 fastsim_multi'
+    online_fastsim.uselib = 'SDL'        
+    online_fastsim.target = 'online_fastsim'

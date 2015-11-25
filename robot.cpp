@@ -76,6 +76,55 @@ namespace fastsim_multi
     _add_robot_obstacle(m);
   }
 
+  void Robot :: teleport(float x, float y, const boost::shared_ptr<Map>& m)
+  {
+    // We don't want the robot to collide with itself
+    _clean_robot_obstacle(m);
+
+    // And we don't want it see itself
+    set_off();
+
+    Posture prev = _pos;
+    _pos.set_x(x);
+    _pos.set_y(y);
+    _update_bb();
+
+    // update bumpers & go back if there is a collision
+    if(_check_collision(m))
+    {
+      float theta = _pos.theta();
+      _pos = prev;
+      _pos.set_theta(theta);
+      _collision = true;
+      _update_bb();
+    }
+    else
+      _collision = false;
+
+    // update lasers
+    for (size_t i = 0; i < _lasers.size(); ++i)
+      _lasers[i].update(_pos, m);
+
+    // update radars
+    for (size_t i = 0; i < _radars.size(); ++i)
+      _radars[i].update(_pos, m);
+
+    // update light sensors
+    for (size_t i = 0; i < _light_sensors.size(); ++i)
+      _light_sensors[i].update(_pos, m);
+
+    // update camera
+    if (_use_camera)
+      _camera.update(_pos, m);
+
+
+    // This robot must be on for the other robots
+    set_on();
+
+    // This robot must act as a collision with other robots
+    _add_robot_obstacle(m);
+  }
+
   void Robot :: _update_bb()
   {
     // robot bb

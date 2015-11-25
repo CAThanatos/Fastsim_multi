@@ -98,8 +98,11 @@ int main(int argc, char *argv[])
 
     cpt++;
 
-    if(cpt >= 1000)
-      break;
+    if(cpt % 1000 == 0)
+    {
+      s.teleport_robot(250, 250, 0);
+      // break;
+    }
   }
 
   std::string file_trace = "trace_behaviour.bmp";

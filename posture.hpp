@@ -54,6 +54,8 @@ namespace fastsim_multi
     float y() const { return _y; }
     float get_x() const { return _x; }
     float get_y() const { return _y; }
+    void set_x(float x) { _x = x; }
+    void set_y(float y) { _y = y; }
     
     //
     float dist_to(const Posture& p) const

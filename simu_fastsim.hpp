@@ -84,6 +84,11 @@ namespace sferes
           assert(index < _robots.size());
           _robots[index]->move(v1, v2, _map);
         }
+        void teleport_robot(float x, float y, int index) 
+        {
+          assert(index < _robots.size());
+          _robots[index]->teleport(x, y, _map);
+        }
 
         void add_robot(fastsim_multi::Robot *robot)
         {
